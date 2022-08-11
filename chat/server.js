@@ -18,7 +18,7 @@
 //     cert: certificate,
 //     ca: chain
 // }
-const {
+const { 
   readFileSync
 } = require("fs");
 const {
@@ -30,12 +30,16 @@ const {
 var mysql = require('mysql2');
 const httpServer = createSecureServer({
   allowHTTP1: true,
-  key: readFileSync("/etc/letsencrypt/live/quigleyshores.com/privkey.pem"),
-  cert: readFileSync("/etc/letsencrypt/live/quigleyshores.com/cert.pem")
+  key: readFileSync('/usr/local/hestia/data/users/alex/ssl/quigleybrook.com.key'),
+  cert: readFileSync('/usr/local/hestia/data/users/alex/ssl/quigleybrook.com.crt')
 });
 
 const io = new Server(httpServer, {
-  /* options */
+  cors: {
+    origin: "https://quigleybrook.com",
+    methods: ["GET", "POST"],
+    credentials: true
+  }
 });
 
 function uuid() {
@@ -74,9 +78,9 @@ io.on("connection", (socket) => {
     // create the connection to database
     const pool = mysql.createPool({
       host: 'localhost',
-      user: 'admin',
+      user: 'alex_admin',
       password: 'Boxing1112_!',
-      database: 'dating',
+      database: 'alex_dating',
       port: '/var/run/mysqld/mysqld.sock'
     });
 

@@ -14,7 +14,7 @@ function qs_scripts() {
     //Server part
     wp_enqueue_script( 'socket.io', "https://cdn.socket.io/3.1.3/socket.io.min.js", _S_VERSION, true );
     wp_enqueue_script( 'peer adapter', "https://webrtc.github.io/adapter/adapter-latest.js", _S_VERSION, true );
-    // wp_enqueue_script( 'peer js', "https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js",  _S_VERSION, true );
+    wp_enqueue_script( 'peer js', "https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js",  _S_VERSION, true );
     wp_localize_script( 'peer adapter', 'ajax_object',array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'directory_uri' => get_template_directory_uri() ) );
 
 
