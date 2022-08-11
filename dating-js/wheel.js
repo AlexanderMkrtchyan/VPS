@@ -1,20 +1,13 @@
 jQuery(document).ready(function ($) {
     // Author: Hoang Tran (https://www.facebook.com/profile.php?id=100004848287494)
     // Github verson (1 file .html): https://github.com/HoangTran0410/3DCarousel/blob/master/index.html
-    var width = $(window).width();
-    if(width<768){
+
     // You can change global variables here:
-    var radius = (width/2)-10; // how big of the radius
-    var imgWidth = 50; // width of images (unit: px)
-    var imgHeight = 80;
-    }else{
-        var radius = 550; // how big of the radius
-        var imgWidth = 150; // width of images (unit: px)
-        var imgHeight = 170;
-    }
+    var radius = 700; // how big of the radius
     var autoRotate = true; // auto rotate or not
-    var rotateSpeed = -35; // unit: seconds/360 degrees
-     // height of images (unit: px)
+    var rotateSpeed = -60; // unit: seconds/360 degrees
+    var imgWidth = 200; // width of images (unit: px)
+    var imgHeight = 294; // height of images (unit: px)
     let all_data = document.querySelectorAll('.prof_image')
 
     // ===================== start =======================
@@ -52,7 +45,7 @@ jQuery(document).ready(function ($) {
         if (stopped) {
             clearInterval(odrag.timer);
             playSpin(false);
-            play.innerText = 'Start'
+            play.innerText = 'Play'
         } else {
             clearInterval(odrag.timer);
             playSpin(true);
@@ -67,7 +60,7 @@ jQuery(document).ready(function ($) {
         if (tY < 0) tY = 0;
 
         // Apply the angle
-        obj.style.transform = "rotateX(" + -tY + "deg) rotateY(" + tX + "deg)";
+        obj.style.transform = "rotateX(" + -tY / 5 + "deg) rotateY(" + tX / 5 + "deg)";
     }
 
     function playSpin(yes) {
@@ -82,7 +75,7 @@ jQuery(document).ready(function ($) {
         desX = 0,
         desY = 0,
         tX = 0,
-        tY = 10;
+        tY = 5;
 
     // auto spin
     if (autoRotate) {
@@ -106,8 +99,8 @@ jQuery(document).ready(function ($) {
                 nY = e.clientY;
             desX = nX - sX;
             desY = nY - sY;
-            tX += desX * 0.1;
-            tY += desY * 0.1;
+            tX += desX
+            tY += desY;
             applyTranform(odrag);
             sX = nX;
             sY = nY;
@@ -133,37 +126,42 @@ jQuery(document).ready(function ($) {
         };
         ospin.style.animationPlayState = "paused";
         stopped = false;
-        play.innerText = 'Start'
+        play.innerText = 'Play'
         return false;
     };
 
     document.onmousewheel = function (e) {
         e = e || window.event;
-        var d = e.wheelDelt / 20 || -e.detail;
+        var d = e.wheelDelta / 20 || -e.detail;
         radius += d;
         init(1);
     };
 
     all_data.forEach(e => {
         e.addEventListener('click', zidor => {
-			let id = document.getElementById('my_id').dataset.id
-            let img = zidor.target
-            let slyles = img.style.cssText
-
-            if (!parseInt(id)) {
-                let target = img.parentElement.children[2]
-                img.style.filter = 'blur(3px)'
-                target.style = slyles
-                target.style.display = 'block'
-                target.style.background = 'transparent'
+            if (!user_id) {
+                let banner = document.getElementsByClassName('register_req')[0]
+                banner.style.display = 'block'
+                setTimeout(() => {
+                    banner.style.display = 'none'
+                }, 3000)
             } else {
+                let img = zidor.target
+                let styles = img.style.cssText
+                let expression = /(?<=\Z\()(.*?)(?=\p)/gm
+                let repl = (parseInt(styles.match(expression)) + 100).toString()
+                let sidor = styles.replace(expression, repl)
                 let target = img.parentElement.children[1]
-				target.style = slyles
+                target.style = sidor
                 target.style.display = 'block'
+                target.style.color = 'white'
                 target.style.width = '100%'
-                target.style.height = '100%'
+                target.style.height = '50px'
             }
+
         })
+
     })
+
 
 })
