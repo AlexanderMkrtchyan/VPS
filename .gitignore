@@ -1,0 +1,9 @@
+node_modules/
+chat/node_modules/
+videos/
+dating.zip
+Saijal/
+*.env
+vendor/
+square_payment/
+
