@@ -8,8 +8,8 @@ if (isset($_GET['id'])) {
 
 if (is_user_logged_in()) {
     $user = get_user_meta($_GET['id']);
-    $author_pic = get_user_meta($id, 'author_pic', true);
     $img_id = $user['profile_image'];
+
     $originalDate = $user['birth-date'][0];
     $b_date = new DateTime($originalDate);
     $age = $b_date->diff(new DateTime())->y;
@@ -20,103 +20,27 @@ if (is_user_logged_in()) {
 }
 
 ?>
-<style>
-    
-.fa-heart { color:red !important; }
-.smily span {
-	width: 17px !important;
-	position: relative;
-}
-.smily form span input {
-	position: absolute;
-	left: 0;
-	top: -3px;
-	opacity: 0;
-	cursor: pointer;
-	width:100px;
-	height:100px;
-}
-.fa-heart {
-	color: red !important;
-	float: left;
-}
-.res {
-	color: green;
-	font-size: 10px;
-}
-.blockd_bx_btm_pgntn nav .pagination {
-	margin: 0;
-	display: inline-flex;
-	list-style: none;
-}#clear_emoj {
-	background: blue;
-	float: left;
-	font-size: 10px;
-	color: #fff;
-	padding: 0px 9px;
-	border-radius: 4px;
-	cursor: pointer;
-	margin-left: 10px;
-}.smily {
-	width: auto;
-	float: right;
-	margin-top: 20px;
-}
-.descriptn_area {
-	width: 100% !important;
-	float: left;
-}.smily {
-	width: 100%;
-	display: table-cell;
-}
-.smily span {
-	width: 122px !important;
-	position: relative;
-	text-align: center !important;
-}
-.blocked_ristrict_mmbr .tabsall_sc .tabcontent .tab_cnt_cnt .descriptn_area img {
-	width: 100px;
-	height: 100px;
-	object-fit: fill;
-	margin-right: 0px;
-	float: left;
-	border-radius: 0px;
-	border: 1px solid #eae7e7;
-}.res {
-	background: green;
-	font-size: 10px;
-	width: 100%;
-	float: left;
-	margin-top: 10px;
-	text-align: center;
-}
-</style>
 <section class="qs-section has-bgc bgc-darker">
     <div class="container qs-profile--top">
         <div class="qs-profile--head">
             <div class="qs-profile--border text-center">
                 <h1 class="color-white qs-profile--title bgc-dark">
-                    <?php echo $user['nickname'][0]; ?>
+                    <?php echo get_userdata($id)->user_login. ', ' . $age; ?>
                 </h1>
             </div>
             <div class="qs-profile--avatar-col text-center">
                 <div class="qs-profile--avatar">
                     <a href="">
-                        <img id="user_profile_image" src="<?php echo get_site_url().'/profile/user_' . $id.'/'.$author_pic; ?>" alt="">
+                        <img id="user_profile_image" src="<?php echo wp_get_attachment_image_src($img_id[0], 'thumbnail')[0]; ?>" alt="">
                     </a>
                 </div>
                 <div class="qs-profile--meta">
-                    <b>Click on my profile picture to learn more about me :)</b>
+                    <b>klir</b>
                 </div>
             </div>
         </div>
-        
-        
-        
-        
-        
         <?php
-        var_dump(get_user_meta(get_current_user_id()));
+
         
         $servername = "localhost";
         $username = "alex_admin";
@@ -125,6 +49,8 @@ if (is_user_logged_in()) {
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
+            
+
         }  
 
         if ($_GET['id'] !== get_current_user_id()) {
@@ -138,7 +64,7 @@ if (is_user_logged_in()) {
                     if($data['status']){
                         ?>
                         <li class="ismile" data-fr="fr1" data-id="<?php echo get_current_user_id(); ?>">
-                            <img style="max-width: 100px;" src="https://cdn-icons-png.flaticon.com/512/3239/3239767.png" alt="">
+                            <img style="max-width: 100px;" src="<?php echo get_stylesheet_directory_uri() ?>/icons/support.png" alt="">
                         </li>
                         <?php
                     }
@@ -181,6 +107,9 @@ if (is_user_logged_in()) {
                 ?>
                 </ul>
                 <?php
+        $conn->close();
+        
+
             }
             if (mysqli_num_rows($sql) == 0) {
                 ?>
@@ -207,9 +136,11 @@ if (is_user_logged_in()) {
                     </li>
                 </ul>
                 <?php
+        $conn->close();
+        
+
             }
         } 
-        $conn->close();
 
         ?>
     </div>
