@@ -97,7 +97,7 @@ function qs_scripts() {
     // Global JS
     wp_enqueue_script( 'global', get_template_directory_uri() . '/js/global.js', array('jquery'), _S_VERSION, true );
     // Notification JS
-    // wp_enqueue_script( 'notifications', get_template_directory_uri() . '/js/notifications.js', array('jquery'), _S_VERSION, true );
+    wp_enqueue_script( 'notifications', get_template_directory_uri() . '/js/notifications.js', array('jquery'), _S_VERSION, true );
 
 
 }
