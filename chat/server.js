@@ -1,23 +1,3 @@
-// const socket = require('socket.io');
-// const http = require('https');
-// const request = require('request');
-// const fs = require('fs');
-// var mysql = require('mysql2');
-// const socket_client = require("socket.io-client")("https://quigleyshores.com:3000");
-
-// socket_client.on("connect_error", (err) => {
-//   console.log(`Bozi txen sxala talis ${err.message}`);
-// });
-
-
-// const privateKey = fs.readFileSync('/etc/letsencrypt/live/quigleyshores.com/privkey.pem', 'utf8')
-// const certificate = fs.readFileSync('/etc/letsencrypt/live/quigleyshores.com/cert.pem', 'utf8')
-// const chain = fs.readFileSync('/etc/letsencrypt/live/quigleyshores.com/chain.pem')
-// const credentials = {
-//     key: privateKey, 
-//     cert: certificate,
-//     ca: chain
-// }
 const { 
   readFileSync
 } = require("fs");
@@ -38,7 +18,7 @@ const io = new Server(httpServer, {
   cors: {
     origin: "https://quigleybrook.com",
     methods: ["GET", "POST"],
-    credentials: true
+    credentials: true,
   }
 });
 
@@ -52,7 +32,13 @@ function uuid() {
   return uuid;
 }
 
-
+// number of sockets in this namespace (on this node)
+var pool = mysql.createPool({
+  host: "localhost",
+  user: "alex_admin",
+  password: "Boxing1112_!",
+  database: "alex_dating"
+});
 
 
 io.on("connection", (socket) => {
