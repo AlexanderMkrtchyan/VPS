@@ -102,7 +102,7 @@ if (is_user_logged_in()) {
             <div class="qs-profile--avatar-col text-center">
                 <div class="qs-profile--avatar">
                     <a href="">
-                        <img src="<?php echo get_site_url().'/profile/user_' . $id.'/'.$author_pic; ?>" alt="">
+                        <img id="user_profile_image" src="<?php echo get_site_url().'/profile/user_' . $id.'/'.$author_pic; ?>" alt="">
                     </a>
                 </div>
                 <div class="qs-profile--meta">
@@ -116,12 +116,12 @@ if (is_user_logged_in()) {
         
         
         <?php
-/*
+        var_dump(get_user_meta(get_current_user_id()));
         
         $servername = "localhost";
-        $username = "harryent_qr";
-        $password = "Datin@321!";
-        $dbname = "harryent_qr";
+        $username = "alex_admin";
+        $password = "Boxing1112_!";
+        $dbname = "alex_dating";
         $conn = new mysqli($servername, $username, $password, $dbname);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -210,7 +210,7 @@ if (is_user_logged_in()) {
             }
         } 
         $conn->close();
-*/
+
         ?>
     </div>
 </section>
