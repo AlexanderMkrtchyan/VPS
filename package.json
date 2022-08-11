@@ -1,0 +1,22 @@
+{
+  "name": "dating",
+  "description": "This is the sidor version of dating site The best sidorg site ever",
+  "version": "1.0.0",
+  "main": "/chat/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlexanderMkrtchyan/sidor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlexanderMkrtchyan/sidor/issues"
+  },
+  "homepage": "https://github.com/AlexanderMkrtchyan/sidor#readme",
+  "dependencies": {
+    "@sendgrid/mail": "^7.6.0"
+  }
+}

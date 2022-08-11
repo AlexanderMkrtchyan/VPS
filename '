@@ -1,0 +1,22 @@
+<?php
+/** 
+* Template Name: Video page
+ *
+ * @package WordPress
+ * @subpackage qs
+ * @since quigleyshore
+ */
+get_header();
+
+?>
+
+
+<section class="qs-prereg">
+    <div class="qs-prereg--video">
+        <video class="vh-100" controls src="<?php echo get_template_directory_uri().'/videos/QSTakeATour.mp4' ?>"></video>
+    </div>
+<a  href="<?php echo esc_url(home_url('/join-the-quest/join-step-1/')); ?>" class="qs-btn btn-primary btn-lg">SKIP</a>
+</section>
+<?php
+get_footer();
+

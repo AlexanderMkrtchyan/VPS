@@ -6,4 +6,6 @@ Saijal/
 *.env
 vendor/
 square_payment/
+payment/
+php_payment/
 
